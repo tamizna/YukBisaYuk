@@ -14,8 +14,10 @@
         android:theme="@style/Theme.YukBisaYuk">
         <activity android:name=".SplashActivity"></activity>
         <activity android:name=".LoginActivity" />
-        <activity android:name=".DetailDonationActivity" />
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".DetailDonationActivity"
+            android:parentActivityName=".HomeActivity" />
+        <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

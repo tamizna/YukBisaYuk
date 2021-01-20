@@ -12,7 +12,8 @@ class DonationViewHolder(val binding: ItemDonasiBinding) : RecyclerView.ViewHold
     fun bind(itemDonation: ResponseGetListDonasiItem) {
         binding.txtTitleDonation.text = itemDonation.title
         binding.txtInitiator.text = ResourceUtil.getString(R.string.yuk_bisa_yuk_team)
-        binding.txtCurrentDonation.text = "Rp ${itemDonation.targetDonation.roundToInt()}"
+        val amount = ResourceUtil.thousandSeparatorRupiah(itemDonation.targetDonation.roundToInt().toString())
+        binding.txtCurrentDonation.text = "Rp $amount"
         binding.pbDonation.max = itemDonation.targetDonation.roundToInt()
         binding.pbDonation.progress = itemDonation.currentDonation.roundToInt()
 

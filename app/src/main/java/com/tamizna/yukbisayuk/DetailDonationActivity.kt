@@ -8,7 +8,9 @@ import androidx.core.text.HtmlCompat
 import com.bumptech.glide.Glide
 import com.tamizna.yukbisayuk.databinding.ActivityDetailDonationBinding
 import com.tamizna.yukbisayuk.models.DataResult
+import com.tamizna.yukbisayuk.utils.ResourceUtil
 import com.tamizna.yukbisayuk.viewModels.DetailDonationViewModel
+import kotlin.math.roundToInt
 
 class DetailDonationActivity : AppCompatActivity() {
 
@@ -48,9 +50,11 @@ class DetailDonationActivity : AppCompatActivity() {
             when (it.state) {
                 DataResult.State.SUCCESS -> {
                     it.data.let { item ->
+                        val targetAmount = ResourceUtil.thousandSeparatorRupiah(item?.targetDonation?.roundToInt().toString())
+                        val currentAmount = ResourceUtil.thousandSeparatorRupiah(item?.currentDonation?.roundToInt().toString())
                         binding.txtTitleDonation.text = item?.title
                         binding.txtCurrentTargetDonation.text =
-                            "Rp ${item?.currentDonation} terkumpul dari Rp ${item?.targetDonation}"
+                            "Rp $currentAmount terkumpul dari Rp $targetAmount"
                         binding.txtDescStory.text = HtmlCompat.fromHtml(
                             item?.description ?: "",
                             HtmlCompat.FROM_HTML_MODE_LEGACY
@@ -58,6 +62,9 @@ class DetailDonationActivity : AppCompatActivity() {
 
                         Glide.with(this).load(item?.photo).centerCrop()
                             .into(binding.imgDonation)
+
+                        binding.pbTargetDonation.max = item?.targetDonation?.toInt()?:0
+                        binding.pbTargetDonation.progress = item?.currentDonation?.toInt()?:0
                     }
                 }
                 DataResult.State.LOADING -> {

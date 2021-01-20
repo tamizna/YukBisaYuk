@@ -11,4 +11,6 @@
     <color name="light_blue_400">#28b5f4</color>
     <color name="teal_400">#72e7ff</color>
     <color name="dark_blue_400">#0085c1</color>
+    <color name="grey">#f7f7f7</color>
+
 </resources>

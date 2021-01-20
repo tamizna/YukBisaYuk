@@ -7,14 +7,14 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tamizna.yukbisayuk.adapters.DonationAdapter
-import com.tamizna.yukbisayuk.databinding.ActivityMainBinding
+import com.tamizna.yukbisayuk.databinding.ActivityHomeBinding
 import com.tamizna.yukbisayuk.models.DataResult
 import com.tamizna.yukbisayuk.models.ResponseGetListDonasiItem
 import com.tamizna.yukbisayuk.viewModels.DonasiViewModel
 
-class MainActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+     private lateinit var binding: ActivityHomeBinding
     private lateinit var donationAdapter: DonationAdapter
 
     private val viewModel: DonasiViewModel by viewModels()
@@ -22,8 +22,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+          binding = ActivityHomeBinding.inflate(layoutInflater)
+          setContentView(binding.root)
 
         val onItemClick = { donation: ResponseGetListDonasiItem ->
             val intent = Intent(this, DetailDonationActivity::class.java)
@@ -32,10 +32,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         donationAdapter = DonationAdapter(onItemClick)
-        binding.rvDonation.run {
-            layoutManager = LinearLayoutManager(context)
-            adapter = donationAdapter
-        }
+         binding.rvDonation.run {
+             layoutManager = LinearLayoutManager(context)
+             adapter = donationAdapter
+         }
 
         setupObserver()
     }
