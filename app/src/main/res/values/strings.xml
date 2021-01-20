@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Yuk Bisa Yuk</string>
+    <string name="server_connection_error">Server connection error</string>
+    <string name="network_server_not_available">Server Not Available</string>
+    <string name="network_internal_error">Internal Error</string>
+    <string name="network_connection_error">Connection Error</string>
+    <string name="network_default_error">Default Error</string>
+    <string name="yuk_bisa_yuk_team">Yuk Bisa Yuk Team</string>
+    <string name="donasi_sekarang">Donasi Sekarang</string>
+    <string name="cerita">Cerita</string>
+    <string name="lorem_ipsum">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="masukkan_nominal_donasi">Masukkan Nominal Donasi</string>
+    <string name="lanjut_pembayaran">Lanjut Pembayaran</string>
+    <string name="pilihan_donasi">Pilihan Donasi</string>
+    <string name="yukbisayuk">#YukBisaYuk</string>
+</resources>
