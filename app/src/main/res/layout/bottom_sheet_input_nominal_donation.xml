@@ -11,15 +11,19 @@
         android:id="@+id/txtLblInputDonation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:text="@string/masukkan_nominal_donasi"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edtLayNominal"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtLblInputDonation">
 
@@ -27,7 +31,8 @@
             android:id="@+id/edtNominalDonation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@null" />
+            android:background="@null"
+            android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button

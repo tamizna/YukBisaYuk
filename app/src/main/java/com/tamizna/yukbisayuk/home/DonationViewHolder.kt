@@ -1,4 +1,4 @@
-package com.tamizna.yukbisayuk.adapters
+package com.tamizna.yukbisayuk.home
 
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide

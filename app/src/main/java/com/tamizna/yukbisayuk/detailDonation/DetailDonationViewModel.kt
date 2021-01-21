@@ -1,4 +1,4 @@
-package com.tamizna.yukbisayuk.viewModels
+package com.tamizna.yukbisayuk.detailDonation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

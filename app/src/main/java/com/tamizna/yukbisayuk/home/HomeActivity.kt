@@ -1,4 +1,4 @@
-package com.tamizna.yukbisayuk
+package com.tamizna.yukbisayuk.home
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,11 +6,12 @@ import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.tamizna.yukbisayuk.adapters.DonationAdapter
+import com.tamizna.yukbisayuk.R
+import com.tamizna.yukbisayuk.detailDonation.DetailDonationActivity
 import com.tamizna.yukbisayuk.databinding.ActivityHomeBinding
 import com.tamizna.yukbisayuk.models.DataResult
 import com.tamizna.yukbisayuk.models.ResponseGetListDonasiItem
-import com.tamizna.yukbisayuk.viewModels.DonasiViewModel
+import com.tamizna.yukbisayuk.utils.LoadingDialog
 
 class HomeActivity : AppCompatActivity() {
 
@@ -41,9 +42,12 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setupObserver() {
+        val loadingView = LoadingDialog.showLoading(this, resources.getString(R.string.loading))
+
         viewModel.donasi.observe(this) {
             when (it.state) {
                 DataResult.State.SUCCESS -> {
+                    loadingView.hide()
                     it.data?.run {
                         val dataFiltered = it.data.filter { item -> item.title.isNotEmpty() }
                         donationAdapter.updateList(dataFiltered)
@@ -52,8 +56,10 @@ class HomeActivity : AppCompatActivity() {
                 }
                 DataResult.State.LOADING -> {
                     Log.d("DONASI", "LOADING")
+                    loadingView.show()
                 }
                 else -> {
+                    loadingView.hide()
                     Log.d("DONASI", "ERROR ${it.errorMessage}")
                 }
             }

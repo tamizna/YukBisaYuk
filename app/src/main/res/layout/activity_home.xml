@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="15dp"
-    tools:context=".HomeActivity">
+    tools:context=".home.HomeActivity">
 
     <TextView
         android:id="@+id/txtLabel"
@@ -15,6 +15,7 @@
         android:text="@string/pilihan_donasi"
         android:textColor="@color/dark_blue_400"
         android:textSize="22sp"
+        app:layout_constraintTop_toTopOf="parent"
         android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView

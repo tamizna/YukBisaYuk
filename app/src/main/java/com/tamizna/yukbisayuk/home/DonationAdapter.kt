@@ -1,4 +1,4 @@
-package com.tamizna.yukbisayuk.adapters
+package com.tamizna.yukbisayuk.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

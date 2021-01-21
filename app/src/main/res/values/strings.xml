@@ -15,4 +15,10 @@
     <string name="yukbisayuk">#YukBisaYuk</string>
     <string name="dummy_title_donation">Bangun Madrasah Pertama untuk Pelosok NTT</string>
     <string name="dummy_current_target_donation">Rp 114.017 terkumpul dari Rp 474.466</string>
+    <string name="history">History</string>
+    <string name="loading">loading</string>
+    <string name="terima_kasih_sudah_berdonasi">Terima kasih sudah berdonasi</string>
+    <string name="donasi_berhasil">Donasi Berhasil</string>
+    <string name="ke_beranda">Ke Home</string>
+    <string name="lihat_riwayat_transaksi">Lihat History</string>
 </resources>

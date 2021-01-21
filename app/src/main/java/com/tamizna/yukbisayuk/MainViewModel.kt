@@ -1,4 +1,4 @@
-package com.tamizna.yukbisayuk.viewModels
+package com.tamizna.yukbisayuk
 
 import androidx.lifecycle.ViewModel
 

@@ -7,8 +7,8 @@
         android:color="@color/white" />
 
     <corners
-        android:topLeftRadius="8dp"
-        android:topRightRadius="8dp">
+        android:topLeftRadius="30dp"
+        android:topRightRadius="30dp">
     </corners>
 
 </shape>

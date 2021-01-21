@@ -1,21 +1,21 @@
-package com.tamizna.yukbisayuk
+package com.tamizna.yukbisayuk.detailDonation
 
-import android.app.ProgressDialog.show
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.HtmlCompat
 import com.bumptech.glide.Glide
+import com.tamizna.yukbisayuk.inputNominal.InputNominalDonationBottomSheet
 import com.tamizna.yukbisayuk.databinding.ActivityDetailDonationBinding
 import com.tamizna.yukbisayuk.models.DataResult
 import com.tamizna.yukbisayuk.utils.ResourceUtil
-import com.tamizna.yukbisayuk.viewModels.DetailDonationViewModel
 import kotlin.math.roundToInt
 
 class DetailDonationActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailDonationBinding
     private lateinit var donationId: String
+    private lateinit var donationTitle: String
 
     private lateinit var viewModel: DetailDonationViewModel
 
@@ -35,12 +35,8 @@ class DetailDonationActivity : AppCompatActivity() {
 
     private fun initListener() {
         binding.btnDonationNow.setOnClickListener {
-            val bottomSheetInputNominal = InputNominalDonationBottomSheet.instance()
-            supportFragmentManager.let {
-                bottomSheetInputNominal.apply {
-                    show(it, InputNominalDonationBottomSheet.TAG)
-                }
-            }
+            val bottomSheetInputNominal = InputNominalDonationBottomSheet.instance(donationId, donationTitle)
+            bottomSheetInputNominal.show(supportFragmentManager, "bottom_sheet")
         }
     }
 
@@ -50,6 +46,7 @@ class DetailDonationActivity : AppCompatActivity() {
             when (it.state) {
                 DataResult.State.SUCCESS -> {
                     it.data.let { item ->
+                        donationTitle = item?.title?:""
                         val targetAmount = ResourceUtil.thousandSeparatorRupiah(item?.targetDonation?.roundToInt().toString())
                         val currentAmount = ResourceUtil.thousandSeparatorRupiah(item?.currentDonation?.roundToInt().toString())
                         binding.txtTitleDonation.text = item?.title
