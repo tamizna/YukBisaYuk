@@ -3,12 +3,16 @@ package com.tamizna.yukbisayuk.home
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tamizna.yukbisayuk.R
 import com.tamizna.yukbisayuk.detailDonation.DetailDonationActivity
 import com.tamizna.yukbisayuk.databinding.ActivityHomeBinding
+import com.tamizna.yukbisayuk.historyDonation.HistoryActivity
 import com.tamizna.yukbisayuk.models.DataResult
 import com.tamizna.yukbisayuk.models.ResponseGetListDonasiItem
 import com.tamizna.yukbisayuk.utils.LoadingDialog
@@ -63,6 +67,22 @@ class HomeActivity : AppCompatActivity() {
                     Log.d("DONASI", "ERROR ${it.errorMessage}")
                 }
             }
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater : MenuInflater = menuInflater
+        inflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            R.id.action_history -> {
+                startActivity(Intent(this, HistoryActivity::class.java))
+                true
+            }
+            else -> { super.onOptionsItemSelected(item) }
         }
     }
 }

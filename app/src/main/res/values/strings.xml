@@ -21,4 +21,6 @@
     <string name="donasi_berhasil">Donasi Berhasil</string>
     <string name="ke_beranda">Ke Home</string>
     <string name="lihat_riwayat_transaksi">Lihat History</string>
+    <string name="dummy_date">25 Januari 2021</string>
+    <string name="dummy_nominal">Rp 50,000</string>
 </resources>

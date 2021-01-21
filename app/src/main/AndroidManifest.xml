@@ -12,7 +12,10 @@
         android:roundIcon="@mipmap/ic_fist_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.YukBisaYuk">
-        <activity android:name=".successDonation.SuccessDonationActivity"></activity>
+        <activity
+            android:name=".historyDonation.HistoryActivity"
+            android:parentActivityName=".home.HomeActivity"/>
+        <activity android:name=".successDonation.SuccessDonationActivity" />
         <activity android:name=".SplashActivity" />
         <activity android:name=".LoginActivity" />
         <activity
