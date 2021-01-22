@@ -15,6 +15,8 @@ import com.tamizna.yukbisayuk.models.DonationTransaction
 import com.tamizna.yukbisayuk.roomDb.DatabaseBuilder
 import com.tamizna.yukbisayuk.roomDb.DatabaseHelperImp
 import com.tamizna.yukbisayuk.successDonation.SuccessDonationActivity
+import com.tamizna.yukbisayuk.utils.DialogLoading
+import com.tamizna.yukbisayuk.utils.ResourceUtil
 import java.util.*
 
 class InputNominalDonationBottomSheet : BottomSheetDialogFragment() {
@@ -60,18 +62,21 @@ class InputNominalDonationBottomSheet : BottomSheetDialogFragment() {
     }
 
     private fun setupObservers() {
+        val dialogLoading = DialogLoading(context!!)
+
         viewModel.dataDonation.observe(viewLifecycleOwner, {
             when (it.state) {
                 DataResult.State.SUCCESS -> {
-                    Toast.makeText(context, "Data berhasil disimpan", Toast.LENGTH_SHORT).show()
+                    dialogLoading.dismiss()
                     this.dismiss()
                     startActivity(Intent(activity, SuccessDonationActivity::class.java))
                 }
                 DataResult.State.LOADING -> {
-                    Log.d("SAVE_DONASI", "LOADING")
+                    dialogLoading.show()
                 }
                 DataResult.State.ERROR -> {
-                    Log.d("SAVE_DONASI", "ERROR ${it.errorMessage}")
+                    dialogLoading.dismiss()
+                    ResourceUtil.showCustomDialog(context!!, getString(R.string.ooops), it.errorMessage?:"", "ERROR")
                 }
             }
         })

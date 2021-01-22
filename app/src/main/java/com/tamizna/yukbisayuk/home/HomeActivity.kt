@@ -15,7 +15,8 @@ import com.tamizna.yukbisayuk.databinding.ActivityHomeBinding
 import com.tamizna.yukbisayuk.historyDonation.HistoryActivity
 import com.tamizna.yukbisayuk.models.DataResult
 import com.tamizna.yukbisayuk.models.ResponseGetListDonasiItem
-import com.tamizna.yukbisayuk.utils.LoadingDialog
+import com.tamizna.yukbisayuk.utils.DialogLoading
+import com.tamizna.yukbisayuk.utils.ResourceUtil
 
 class HomeActivity : AppCompatActivity() {
 
@@ -46,25 +47,23 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setupObserver() {
-        val loadingView = LoadingDialog.showLoading(this, resources.getString(R.string.loading))
+        val loadingDialog = DialogLoading(this)
 
         viewModel.donasi.observe(this) {
             when (it.state) {
                 DataResult.State.SUCCESS -> {
-                    loadingView.hide()
+                    loadingDialog.hide()
                     it.data?.run {
                         val dataFiltered = it.data.filter { item -> item.title.isNotEmpty() }
                         donationAdapter.updateList(dataFiltered)
                     }
-
                 }
                 DataResult.State.LOADING -> {
-                    Log.d("DONASI", "LOADING")
-                    loadingView.show()
+                    loadingDialog.show()
                 }
                 else -> {
-                    loadingView.hide()
-                    Log.d("DONASI", "ERROR ${it.errorMessage}")
+                    loadingDialog.hide()
+                    ResourceUtil.showCustomDialog(this, getString(R.string.ooops), it.errorMessage?:"", "ERROR")
                 }
             }
         }

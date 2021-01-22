@@ -5,9 +5,11 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.HtmlCompat
 import com.bumptech.glide.Glide
+import com.tamizna.yukbisayuk.R
 import com.tamizna.yukbisayuk.inputNominal.InputNominalDonationBottomSheet
 import com.tamizna.yukbisayuk.databinding.ActivityDetailDonationBinding
 import com.tamizna.yukbisayuk.models.DataResult
+import com.tamizna.yukbisayuk.utils.DialogLoading
 import com.tamizna.yukbisayuk.utils.ResourceUtil
 import kotlin.math.roundToInt
 
@@ -41,10 +43,12 @@ class DetailDonationActivity : AppCompatActivity() {
     }
 
     private fun setupObservers() {
-        Log.d("ID", "DONATION: $donationId")
+        val dialogLoading = DialogLoading(this)
+
         viewModel.detailDonation.observe(this) {
             when (it.state) {
                 DataResult.State.SUCCESS -> {
+                    dialogLoading.dismiss()
                     it.data.let { item ->
                         donationTitle = item?.title?:""
                         val targetAmount = ResourceUtil.thousandSeparatorRupiah(item?.targetDonation?.roundToInt().toString())
@@ -65,10 +69,11 @@ class DetailDonationActivity : AppCompatActivity() {
                     }
                 }
                 DataResult.State.LOADING -> {
-                    Log.d("DONASI", "DETAIL LOADING")
+                    dialogLoading.show()
                 }
                 else -> {
-                    Log.d("DONASI", "DETAIL ERROR ${it.errorMessage}")
+                    dialogLoading.dismiss()
+                    ResourceUtil.showCustomDialog(this, getString(R.string.ooops), it.errorMessage?:"", "ERROR")
                 }
             }
         }

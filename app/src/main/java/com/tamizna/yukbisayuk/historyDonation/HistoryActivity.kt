@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.tamizna.yukbisayuk.R
 import com.tamizna.yukbisayuk.databinding.ActivityHistoryBinding
 import com.tamizna.yukbisayuk.models.DataResult
 import com.tamizna.yukbisayuk.roomDb.DatabaseBuilder
 import com.tamizna.yukbisayuk.roomDb.DatabaseHelperImp
+import com.tamizna.yukbisayuk.utils.DialogLoading
+import com.tamizna.yukbisayuk.utils.ResourceUtil
 
 class HistoryActivity : AppCompatActivity() {
 
@@ -35,19 +38,22 @@ class HistoryActivity : AppCompatActivity() {
     }
 
     private fun setupObservers() {
+        val dialogLoading = DialogLoading(this)
+
         viewModel.listTransactionDonation.observe(this, {
             when (it.state) {
                 DataResult.State.LOADING -> {
-                    Log.d("HISTORY", "LOADING")
+                    dialogLoading.show()
                 }
                 DataResult.State.SUCCESS -> {
-                    Log.d("HISTORY", "SUCCESS")
+                    dialogLoading.dismiss()
                     if (!it.data.isNullOrEmpty()) {
                         adapterHistory.updateList(it.data)
                     }
                 }
                 DataResult.State.ERROR -> {
-                    Log.d("HISTORY", "ERROR ${it.errorMessage}")
+                    dialogLoading.dismiss()
+                    ResourceUtil.showCustomDialog(this, getString(R.string.ooops), it.errorMessage?:"", "ERROR")
                 }
             }
         })
