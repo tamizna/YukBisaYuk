@@ -4,62 +4,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey"
     android:padding="15dp"
     tools:context=".successDonation.SuccessDonationActivity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:text="@string/donasi_berhasil"
-        android:textAlignment="center"
-        android:textColor="@color/dark_blue_400"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/imgSuccess" />
-
     <ImageView
         android:id="@+id/imgSuccess"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/ic_check"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="70dp"
+        android:src="@drawable/ic_give_love"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/txtSuccess"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:text="@string/donasi_berhasil"
+        android:textAlignment="center"
+        android:textColor="@color/dark_blue_400"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/imgSuccess" />
+
+    <TextView
         android:id="@+id/txtThankYou"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
+        android:paddingHorizontal="35dp"
         android:text="@string/terima_kasih_sudah_berdonasi"
         android:textAlignment="center"
         android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/imgSuccess" />
+        app:layout_constraintTop_toBottomOf="@id/txtSuccess" />
 
-    <Button
-        android:id="@+id/btnGoHome"
+    <TextView
+        android:id="@+id/btnSeeHistory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
-        android:text="@string/ke_beranda"
-        app:layout_constraintEnd_toStartOf="@id/btnSeeHistory"
-        app:layout_constraintHorizontal_chainStyle="packed"
+        android:layout_marginTop="60dp"
+        android:padding="10dp"
+        android:text="@string/lihat_riwayat_transaksi"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtThankYou" />
 
     <Button
-        android:id="@+id/btnSeeHistory"
+        android:id="@+id/btnGoHome"
+        style="@style/Btn.Blue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/lihat_riwayat_transaksi"
+        android:layout_marginTop="5dp"
+        android:paddingHorizontal="50dp"
+        android:text="@string/ke_beranda"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toEndOf="@id/btnGoHome"
-        app:layout_constraintTop_toBottomOf="@id/txtThankYou" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnSeeHistory" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

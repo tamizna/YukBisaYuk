@@ -37,10 +37,11 @@
 
     <Button
         android:id="@+id/btnDonation"
+        style="@style/Btn.Blue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:text="@string/lanjut_pembayaran"
+        android:text="@string/donasi"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edtLayNominal" />
 

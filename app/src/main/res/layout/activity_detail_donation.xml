@@ -59,6 +59,7 @@
 
         <Button
             android:id="@+id/btnDonationNow"
+            style="@style/Btn.Blue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"
