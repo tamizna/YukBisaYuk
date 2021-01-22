@@ -3,6 +3,7 @@ package com.tamizna.yukbisayuk.models
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 import java.util.*
 
 @Entity(tableName = "donation_transaction")
@@ -22,4 +23,4 @@ data class DonationTransaction(
 
     @ColumnInfo(name = "date")
     val date : Date?
-)
+) : Serializable

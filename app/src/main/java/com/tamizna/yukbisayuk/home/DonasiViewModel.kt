@@ -6,7 +6,6 @@ import androidx.lifecycle.liveData
 import androidx.lifecycle.switchMap
 import com.tamizna.yukbisayuk.models.DataResult
 import com.tamizna.yukbisayuk.models.ResponseGetListDonasiItem
-import com.tamizna.yukbisayuk.repository.ListDonasiRepository
 
 class DonasiViewModel : ViewModel() {
     private val listDonasiRepository: ListDonasiRepository = ListDonasiRepository()

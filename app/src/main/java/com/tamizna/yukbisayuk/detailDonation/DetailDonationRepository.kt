@@ -1,10 +1,12 @@
-package com.tamizna.yukbisayuk.repository
+package com.tamizna.yukbisayuk.detailDonation
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.tamizna.yukbisayuk.models.DataResult
 import com.tamizna.yukbisayuk.models.ResponseGetListDonasiItem
+import com.tamizna.yukbisayuk.repository.convertExceptionToError
+import com.tamizna.yukbisayuk.repository.convertToDataResult
 import com.tamizna.yukbisayuk.services.NetworkService
 import com.tamizna.yukbisayuk.services.Networking
 

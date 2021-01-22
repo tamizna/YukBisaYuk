@@ -90,7 +90,7 @@ class InputNominalDonationBottomSheet : BottomSheetDialogFragment() {
                     )
                 }
                 DataResult.State.ERROR -> {
-                    binding.edtNominalDonation.error = it.errorMessage
+                    binding.edtLayNominal.error = it.errorMessage
                 }
             }
         })

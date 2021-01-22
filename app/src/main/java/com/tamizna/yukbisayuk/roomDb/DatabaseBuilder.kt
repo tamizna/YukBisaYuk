@@ -2,6 +2,11 @@ package com.tamizna.yukbisayuk.roomDb
 
 import android.content.Context
 import androidx.room.Room
+import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
+import com.tamizna.yukbisayuk.models.User
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 object DatabaseBuilder {
 
@@ -21,6 +26,19 @@ object DatabaseBuilder {
             context.applicationContext,
             AppDatabase::class.java,
             "yukbisayuk_db"
-        ).build()
+        ).addCallback(object : RoomDatabase.Callback() {
+            override fun onCreate(db: SupportSQLiteDatabase) {
+                super.onCreate(db)
+                GlobalScope.launch {
+                    getInstance(context).userDao().run {
+                            this.insertUser(
+                                User(
+                                    0, "tamizna", "tralala123"
+                                )
+                            )
+                    }
+                }
+            }
+        }).build()
 
 }

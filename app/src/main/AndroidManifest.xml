@@ -14,20 +14,24 @@
         android:theme="@style/Theme.YukBisaYuk">
         <activity
             android:name=".historyDonation.HistoryActivity"
-            android:parentActivityName=".home.HomeActivity"/>
-        <activity android:name=".successDonation.SuccessDonationActivity" />
-        <activity android:name=".SplashActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity
-            android:name=".detailDonation.DetailDonationActivity"
             android:parentActivityName=".home.HomeActivity" />
-        <activity android:name=".home.HomeActivity">
+        <activity android:name=".successDonation.SuccessDonationActivity" />
+        <activity
+            android:name=".splashLogin.SplashActivity"
+            android:theme="@style/Theme.YukBisaYuk.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".splashLogin.LoginActivity"
+            android:theme="@style/Theme.YukBisaYuk.NoActionBar" />
+        <activity
+            android:name=".detailDonation.DetailDonationActivity"
+            android:parentActivityName=".home.HomeActivity" />
+        <activity android:name=".home.HomeActivity" />
     </application>
 
 </manifest>
