@@ -2,6 +2,7 @@ package com.tamizna.yukbisayuk.historyDonation
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tamizna.yukbisayuk.R
@@ -49,10 +50,13 @@ class HistoryActivity : AppCompatActivity() {
                     dialogLoading.dismiss()
                     if (!it.data.isNullOrEmpty()) {
                         adapterHistory.updateList(it.data)
+                    } else {
+                        binding.emptyView.visibility = View.VISIBLE
                     }
                 }
                 DataResult.State.ERROR -> {
                     dialogLoading.dismiss()
+                    binding.emptyView.visibility = View.VISIBLE
                     ResourceUtil.showCustomDialog(this, getString(R.string.ooops), it.errorMessage?:"", "ERROR")
                 }
             }

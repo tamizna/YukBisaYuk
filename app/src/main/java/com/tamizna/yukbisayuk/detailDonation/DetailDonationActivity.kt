@@ -26,9 +26,10 @@ class DetailDonationActivity : AppCompatActivity() {
 
         viewModel = DetailDonationViewModel(donationId)
 
-
         binding = ActivityDetailDonationBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        supportActionBar?.title = getString(R.string.detail_donasi)
 
         setupObservers()
         initListener()

@@ -31,7 +31,6 @@ object ResourceUtil {
     fun showCustomDialog(context: Context, titleText: String, message: String, type: String) {
         val dialog = Dialog(context)
         dialog.setContentView(R.layout.dialog_global)
-        dialog.window!!.setType(WindowManager.LayoutParams.TYPE_BASE_APPLICATION)
 
         val title = dialog.findViewById<TextView>(R.id.dialogTitle)
         val msg = dialog.findViewById<TextView>(R.id.dialogMessage)

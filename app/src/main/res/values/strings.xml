@@ -30,4 +30,6 @@
     <string name="password">Password</string>
     <string name="lbl_ok">OK</string>
     <string name="ooops">Ooops</string>
+    <string name="tidak_ada_data">Tidak ada data</string>
+    <string name="detail_donasi">Detail Donasi</string>
 </resources>
