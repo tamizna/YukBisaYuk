@@ -9,14 +9,34 @@
 
     <TextView
         android:id="@+id/txtLabel"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:text="@string/pilihan_donasi"
         android:textColor="@color/dark_blue_400"
         android:textSize="22sp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:text="@string/urutkan"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtLabel" />
+
+    <Spinner
+        android:id="@+id/spinnerDonationCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
+        android:prompt="@string/urutkan"
+        android:spinnerMode="dialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtLabel" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvDonation"
@@ -27,7 +47,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtLabel"
+        app:layout_constraintTop_toBottomOf="@id/spinnerDonationCategory"
         tools:listitem="@layout/item_donasi" />
 
     <ImageView

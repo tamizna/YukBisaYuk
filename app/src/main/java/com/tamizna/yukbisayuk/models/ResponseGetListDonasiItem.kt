@@ -1,7 +1,7 @@
 package com.tamizna.yukbisayuk.models
 
 data class ResponseGetListDonasiItem(
-    val createdAt: String,
+    var createdAt: String,
     val currentDonation: Double,
     val description: String,
     val id: String,

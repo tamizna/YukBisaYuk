@@ -6,6 +6,8 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,10 +21,11 @@ import com.tamizna.yukbisayuk.splashLogin.LoginActivity
 import com.tamizna.yukbisayuk.utils.DialogLoading
 import com.tamizna.yukbisayuk.utils.ResourceUtil
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     private lateinit var binding: ActivityHomeBinding
     private lateinit var donationAdapter: DonationAdapter
+    private var dataFiltered: List<ResponseGetListDonasiItem> = mutableListOf()
 
     private val viewModel: HomeViewModel by viewModels()
 
@@ -45,22 +48,34 @@ class HomeActivity : AppCompatActivity() {
         }
 
         setupObserver()
+
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.donation_category,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            binding.spinnerDonationCategory.adapter = adapter
+        }
+
+        binding.spinnerDonationCategory.onItemSelectedListener = this
     }
 
     private fun setupObserver() {
         val loadingDialog = DialogLoading(this)
 
-        viewModel.donasi.observe(this) {
+        viewModel.donasi.observe(this) { it ->
             when (it.state) {
                 DataResult.State.SUCCESS -> {
                     loadingDialog.hide()
                     it.data?.run {
-                        val dataFiltered = it.data.filter { item -> item.title.isNotEmpty() }
+                        dataFiltered = it.data.filter { item -> item.title.isNotEmpty() }
 
                         if (!it.data.isNullOrEmpty()) {
                             donationAdapter.updateList(dataFiltered)
                         } else {
                             binding.txtLabel.visibility = View.GONE
+                            binding.spinnerDonationCategory.visibility = View.GONE
                             binding.emptyView.visibility = View.VISIBLE
                         }
                     }
@@ -72,6 +87,7 @@ class HomeActivity : AppCompatActivity() {
                     loadingDialog.hide()
                     binding.emptyView.visibility = View.VISIBLE
                     binding.txtLabel.visibility = View.GONE
+                    binding.spinnerDonationCategory.visibility = View.GONE
                     ResourceUtil.showCustomDialog(
                         this,
                         getString(R.string.ooops),
@@ -116,4 +132,14 @@ class HomeActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
+        val position = parent.getItemAtPosition(pos)
+        donationAdapter.updateList(viewModel.filteredData(dataFiltered, position))
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>) {
+
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.tamizna.yukbisayuk.home
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +19,8 @@ class DonationAdapter(private val onItemClick : (ResponseGetListDonasiItem) -> U
 
     override fun onBindViewHolder(holder: DonationViewHolder, position: Int) {
         holder.bind(donations[position])
+
+        Log.d("CREATED_AT", "${donations[position].createdAt}")
 
         holder.binding.root.setOnClickListener {
             onItemClick(donations[position])

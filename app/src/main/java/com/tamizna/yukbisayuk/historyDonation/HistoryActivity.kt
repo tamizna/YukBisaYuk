@@ -1,7 +1,6 @@
 package com.tamizna.yukbisayuk.historyDonation
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -49,7 +48,8 @@ class HistoryActivity : AppCompatActivity() {
                 DataResult.State.SUCCESS -> {
                     dialogLoading.dismiss()
                     if (!it.data.isNullOrEmpty()) {
-                        adapterHistory.updateList(it.data)
+                        val data = it.data.sortedByDescending { data -> data.date }
+                        adapterHistory.updateList(data)
                     } else {
                         binding.emptyView.visibility = View.VISIBLE
                     }
@@ -57,7 +57,12 @@ class HistoryActivity : AppCompatActivity() {
                 DataResult.State.ERROR -> {
                     dialogLoading.dismiss()
                     binding.emptyView.visibility = View.VISIBLE
-                    ResourceUtil.showCustomDialog(this, getString(R.string.ooops), it.errorMessage?:"", "ERROR")
+                    ResourceUtil.showCustomDialog(
+                        this,
+                        getString(R.string.ooops),
+                        it.errorMessage ?: "",
+                        "ERROR"
+                    )
                 }
             }
         })

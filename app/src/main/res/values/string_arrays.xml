@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="donation_category">
+        <item>Rekomendasi</item>
+        <item>Abjab</item>
+        <item>Terbaru</item>
+        <item>Terkumpul Dana Paling Sedikit</item>
+    </string-array>
+</resources>

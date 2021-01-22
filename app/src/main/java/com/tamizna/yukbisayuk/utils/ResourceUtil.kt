@@ -21,6 +21,10 @@ object ResourceUtil {
         return CustomApplication.application.resources.getString(resourceId)
     }
 
+    fun getStringArray(resourceId : Int) : Array<String> {
+        return CustomApplication.application.resources.getStringArray(resourceId)
+    }
+
     fun thousandSeparatorRupiah(value: String?): String {
         val formatter = NumberFormat.getInstance(Locale.US) as DecimalFormat
         formatter.applyPattern("#,###,###,###")
