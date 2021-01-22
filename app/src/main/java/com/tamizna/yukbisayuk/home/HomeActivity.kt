@@ -15,6 +15,7 @@ import com.tamizna.yukbisayuk.detailDonation.DetailDonationActivity
 import com.tamizna.yukbisayuk.historyDonation.HistoryActivity
 import com.tamizna.yukbisayuk.models.DataResult
 import com.tamizna.yukbisayuk.models.ResponseGetListDonasiItem
+import com.tamizna.yukbisayuk.splashLogin.LoginActivity
 import com.tamizna.yukbisayuk.utils.DialogLoading
 import com.tamizna.yukbisayuk.utils.ResourceUtil
 
@@ -23,7 +24,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     private lateinit var donationAdapter: DonationAdapter
 
-    private val viewModel: DonasiViewModel by viewModels()
+    private val viewModel: HomeViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -92,6 +93,22 @@ class HomeActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.action_history -> {
                 startActivity(Intent(this, HistoryActivity::class.java))
+                true
+            }
+            R.id.action_logout -> {
+                val dialogLoading = DialogLoading(this)
+
+                viewModel.loggingOut.observe(this) {
+                    when (it.state) {
+                        DataResult.State.SUCCESS -> {
+                            dialogLoading.dismiss()
+                            startActivity(Intent(this, LoginActivity::class.java))
+                        }
+                        DataResult.State.LOADING -> {
+                            dialogLoading.show()
+                        }
+                    }
+                }
                 true
             }
             else -> {

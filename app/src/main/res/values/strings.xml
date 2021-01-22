@@ -32,4 +32,6 @@
     <string name="ooops">Ooops</string>
     <string name="tidak_ada_data">Tidak ada data</string>
     <string name="detail_donasi">Detail Donasi</string>
+    <string name="more">More</string>
+    <string name="log_out">Log Out</string>
 </resources>

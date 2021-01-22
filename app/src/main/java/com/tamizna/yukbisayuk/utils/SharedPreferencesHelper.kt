@@ -10,7 +10,7 @@ class SharedPreferencesHelper {
         const val USERNAME = "PREF_USERNAME"
     }
 
-    val prefs = CustomApplication.application.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)
+    private val prefs = CustomApplication.application.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)
 
     fun getUsername() : String? = prefs.getString(USERNAME, null)
 
@@ -19,6 +19,6 @@ class SharedPreferencesHelper {
     }
 
     fun removeUsername() {
-        prefs.edit().remove(USERNAME).apply()
+        prefs.edit().clear().apply()
     }
 }

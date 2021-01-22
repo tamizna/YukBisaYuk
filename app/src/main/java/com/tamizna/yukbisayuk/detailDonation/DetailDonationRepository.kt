@@ -24,8 +24,6 @@ class DetailDonationRepository {
                 e.convertExceptionToError()
             }
 
-            Log.d("DETAIL_DONASI", "${result.data}")
-
             if (result.state == DataResult.State.SUCCESS && result.data != null) {
                 result.data.let { item ->
                     ResponseGetListDonasiItem(
@@ -41,7 +39,6 @@ class DetailDonationRepository {
                 }.run {
                     emit(DataResult(DataResult.State.SUCCESS, this, null))
                 }
-                Log.d("DETAIL_DONASI", "${result.data}")
             } else {
                 emit(DataResult(result.state, result.data, result.errorMessage))
             }

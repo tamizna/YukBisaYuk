@@ -46,7 +46,6 @@ class ListDonasiRepository {
                         )
                     )
                 }
-                Log.d("DONASI", "${result.data}")
             } else {
                 emit(DataResult(result.state, result.data, result.errorMessage))
             }

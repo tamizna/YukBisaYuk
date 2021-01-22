@@ -33,7 +33,10 @@ class UserRepository {
             }
         }
 
-    fun logOut() {
-        prefs.removeUsername()
-    }
+    fun logOut() : LiveData<DataResult<Unit>> =
+        liveData(IO) {
+            emit(DataResult(DataResult.State.LOADING, Unit, null))
+            prefs.removeUsername()
+            emit(DataResult(DataResult.State.SUCCESS, Unit, null))
+        }
 }
